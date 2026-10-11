@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Palabrea</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+<script src="js/palabras.js" defer></script>
+<script src="js/app.js" defer></script>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="marca">
+      <h1>Palabr<span>ea</span></h1>
+      <p id="subtitulo">Palabra del día</p>
+    </div>
+    <div class="iconos">
+      <button class="icono" id="btnAyuda" type="button">Cómo se juega</button>
+      <button class="icono" id="btnStats" type="button">Estadísticas</button>
+    </div>
+  </header>
+
+  <nav class="modos">
+    <div class="seg" id="modos" role="group" aria-label="Modo de juego">
+      <button type="button" data-modo="diaria" aria-pressed="true">Palabra del día</button>
+      <button type="button" data-modo="libre" aria-pressed="false">Partida libre</button>
+    </div>
+  </nav>
+
+  <main class="zona">
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+    <div class="tablero" id="tablero" role="grid" aria-label="Tablero de intentos"></div>
+  </main>
+
+  <div class="teclado" id="teclado" aria-label="Teclado"></div>
+</div>
+
+<dialog id="dlgAyuda">
+  <div class="dlg">
+    <h2>Cómo se juega</h2>
+    <p>Adivina la palabra de 5 letras en 6 intentos. Cada intento tiene que ser una palabra que exista. Las tildes no cuentan, pero la Ñ sí es una letra distinta de la N.</p>
+    <p>Después de cada intento, el color de las casillas te da una pista:</p>
+    <div class="ayuda-item">
+      <div class="ejemplo"><div class="celda acierto">p</div><div class="celda llena">l</div><div class="celda llena">a</div><div class="celda llena">y</div><div class="celda llena">a</div></div>
+      <p><b>Verde:</b> la P está en la palabra y en su sitio.</p>
+    </div>
+    <div class="ayuda-item">
+      <div class="ejemplo"><div class="celda llena">c</div><div class="celda llena">i</div><div class="celda presente">e</div><div class="celda llena">l</div><div class="celda llena">o</div></div>
+      <p><b>Ámbar:</b> la E está en la palabra, pero en otra posición.</p>
+    </div>
+    <div class="ayuda-item">
+      <div class="ejemplo"><div class="celda llena">s</div><div class="celda llena">u</div><div class="celda llena">e</div><div class="celda ausente">ñ</div><div class="celda llena">o</div></div>
+      <p><b>Gris:</b> la Ñ no está en la palabra.</p>
+    </div>
+    <p>La <b>palabra del día</b> es la misma para todo el mundo y cambia a medianoche. En <b>partida libre</b> puedes jugar todas las que quieras.</p>
+    <button class="cerrar" type="button" data-cerrar>Entendido</button>
+  </div>
+</dialog>
+
+<dialog id="dlgStats">
+  <div class="dlg">
+    <h2>Estadísticas</h2>
+    <p class="resultado" id="resultado" hidden></p>
+    <div class="numeros">
+      <div><b id="nJugadas">0</b><span>Jugadas</span></div>
+      <div><b id="nPct">0</b><span>% ganadas</span></div>
+      <div><b id="nRacha">0</b><span>Racha</span></div>
+      <div><b id="nMejor">0</b><span>Mejor racha</span></div>
+    </div>
+    <p style="font-weight:700">Intentos necesarios (palabra del día)</p>
+    <div class="dist" id="dist"></div>
+    <p class="proxima" id="proxima"></p>
+    <div class="acciones">
+      <button class="primario" id="btnCompartir" type="button">Copiar resultado</button>
+      <button class="secundario" id="btnOtra" type="button">Partida libre</button>
+    </div>
+    <textarea class="copia" id="copia" aria-label="Resultado para compartir" readonly hidden></textarea>
+    <p class="proxima" id="copiaMsg" role="status"></p>
+    <button class="cerrar" type="button" data-cerrar>Cerrar</button>
+  </div>
+</dialog>
+</body>
+</html>
